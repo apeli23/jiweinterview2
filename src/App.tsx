@@ -1,4 +1,6 @@
+import { Global } from '@emotion/react';
 import {useState, useEffect } from 'react';
+import GlobalInfo from './components/GlobalInfo'
 
 type Country = {
   Country: string;
@@ -37,7 +39,8 @@ const App: React.FunctionComponent = () => {
   
   const fetchData = async () => {
     const result = await fetch('https://api.covid19api.com/summary')
-    const data = result.json()
+    const data: ResponseData = await result.json()
+    setData(data)
     console.log('data :>> ', data);
   }
 
@@ -45,7 +48,18 @@ const App: React.FunctionComponent = () => {
     fetchData()
   }, [])
   return (
-    <div><>This  is hotpink!</></div>
+    <div>
+      {
+      data ? 
+        (
+          <GlobalInfo 
+            newConfirmed = {data?.Global.NewConfirmed}
+            newDeaths = {data?.Global.NewDeaths}
+            newRecovered = {data?.Global.NewRecovered}
+          /> 
+        ): ("loading...")
+        }
+    </div>
   )
 };
 
