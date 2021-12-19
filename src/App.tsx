@@ -1,39 +1,9 @@
 import { Global } from '@emotion/react';
 import {useState, useEffect } from 'react';
+import CountryList from './components/CountryList';
 import GlobalInfo from './components/GlobalInfo'
+import type {ResponseData} from './types'
 
-type Country = {
-  Country: string;
-  CountryCode: string;
-  Date: string;
-  ID: string;
-  NewConfirmed: number;
-  NewDeaths: number;
-  NewRecovered: number;
-  Premium: unknown
-  Slug: string;
-  TotalConfirmed: number;
-  TotalDeaths: number;
-  TotalRecovered: number;
-}
-
-type GlobalData = {
-  Date:  string;
-  NewConfirmed: number;
-  NewDeaths: number;
-  NewRecovered: number;
-  TotalConfirmed: number;
-  TotalDeaths: number;
-  TotalRecovered: number;
-}
-
-type ResponseData = {
-  Countries: Country[];
-  Date: string;
-  Global: GlobalData;
-  ID: string;
-  Message: string;
-}
 const App: React.FunctionComponent = () => {
   const[data, setData] = useState<ResponseData | undefined>(undefined);
   
@@ -52,11 +22,15 @@ const App: React.FunctionComponent = () => {
       {
       data ? 
         (
-          <GlobalInfo 
-            newConfirmed = {data?.Global.NewConfirmed}
-            newDeaths = {data?.Global.NewDeaths}
-            newRecovered = {data?.Global.NewRecovered}
-          /> 
+          <>
+            <GlobalInfo 
+              newConfirmed = {data?.Global.NewConfirmed}
+              newDeaths = {data?.Global.NewDeaths}
+              newRecovered = {data?.Global.NewRecovered}
+            /> 
+
+            <CountryList countries={data.Countries}/>
+          </>
         ): ("loading...")
         }
     </div>
