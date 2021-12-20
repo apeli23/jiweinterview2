@@ -1,8 +1,11 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import './App.css';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import GamesList from './components/GamesList';
+import type {ResponseData} from './types';
 
 function App() {
+  const[data, setData] = useState<ResponseData | undefined>(undefined);
   const prefetchTodos = async () => {
     // The results of this query will be cached like a normal query
     
@@ -15,7 +18,7 @@ function App() {
       //incase of new request check to see when last req was updated
       cache: new InMemoryCache(),
     });
-    const { data } = await client.query({
+    const { data }  = await client.query({
       query: gql`
       query GetAllGames {
         games {
@@ -68,16 +71,16 @@ function App() {
     });
     
      
-    console.log(data)
+    setData(data)
   }
-
+  console.log('data :>> ', data);
   
   useEffect(() => {
     prefetchTodos()
   },[])
   return (
     <div>
-      works
+      {data? <GamesList games={data.games}/> : 'loading...'}
     </div>
   );
 }
