@@ -73,8 +73,11 @@ function App() {
      
     setData(data)
   }
-  console.log('data :>> ', data);
-  
+  // console.log('data :>> ', data);
+ 
+  data?.games.map((game) => (
+    console.log(`game`, game.game_posters[0]?.file.path) 
+   ))
   useEffect(() => {
     prefetchTodos()
   },[])

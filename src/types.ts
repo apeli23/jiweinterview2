@@ -34,11 +34,14 @@ export type Author = {
 }
 
 export type Game_Posters = {
+    file: FileDetails;
+    __typename: string;
+}
+export type FileDetails = {
     id: string;
     path: string;
     __typename: string;
 }
-
 export type ResponseData = {
     games: Game[];
     Date: string;

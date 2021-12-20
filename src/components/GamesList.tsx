@@ -44,7 +44,7 @@ const ListContent = styled.div`
 const GamesList: React.FunctionComponent<Props> = ({games}) => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    function openModal(games) {
+    function openModal() {
         setIsOpen(true)
     }
 
@@ -56,12 +56,13 @@ const GamesList: React.FunctionComponent<Props> = ({games}) => {
         <>
             <ListWrapper>
                 {games.map((game) => (
-                    
                     <ListItem key={game.id}>
-                        <ListContent onClick={() => {openModal(game)}}>
-                            {/* <Image src={game.game_posters.path}
+                        <ListContent onClick={() => {openModal()}}>
+                            <img 
+                            alt = {game.title}
+                            src={game.game_posters[0]?.file.path}
                                     width={300}
-                                    height={300} /> */}
+                                    height={300} />
                             <h2><b>{game.title}</b></h2>
                             <p>{game.genre}</p>
                         </ListContent>
