@@ -20,26 +20,26 @@ interface Props {
 }
 
 const ListWrapper = styled.ul`
-padding:0;
 display:flex;
 flex-wrap: wrap;
+
 `;
 
 const ListItem = styled.li`
 list-style-type: none;
 flex: 0 0 50%;
 text-align: center;
+margin-top: 5px;
 `;
 const ListContent = styled.div`
     background-color: #f7f7f7;
     width: 20rem;
-    margin: 5rem auto;
-    margin-bottom: 5px;
+    margin-top: 5px;
     border-radius: 1rem;
-    box-shadow: 0 0 5rem rgba(0,0,0,0.3);
-    transition: 0.4s; 
+    box-shadow: 0 0 5rem rgba(0,0,0,1);
     cursor:pointer;
-`
+    
+`;
  
 const GamesList: React.FunctionComponent<Props> = ({games}) => {
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -59,10 +59,11 @@ const GamesList: React.FunctionComponent<Props> = ({games}) => {
                     <ListItem key={game.id}>
                         <ListContent onClick={() => {openModal()}}>
                             <img 
-                            alt = {game.title}
-                            src={game.game_posters[0]?.file.path}
-                                    width={300}
-                                    height={300} />
+                                alt = {game.title}
+                                src={game.game_posters[0]?.file.path}
+                                width={300}
+                                height={300} 
+                            />
                             <h2><b>{game.title}</b></h2>
                             <p>{game.genre}</p>
                         </ListContent>

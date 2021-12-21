@@ -3,6 +3,10 @@ import './App.css';
 import {useEffect, useState} from 'react';
 import GamesList from './components/GamesList';
 import type {ResponseData} from './types';
+import { Global, css } from '@emotion/react';
+import Layout from './components/Layout';
+import Home from './components/Home';
+
 
 function App() {
   const[data, setData] = useState<ResponseData | undefined>(undefined);
@@ -75,15 +79,31 @@ function App() {
   }
   // console.log('data :>> ', data);
  
-  data?.games.map((game) => (
-    console.log(`game`, game.game_posters[0]?.file.path) 
-   ))
   useEffect(() => {
     prefetchTodos()
   },[])
   return (
     <div>
-      {data? <GamesList games={data.games}/> : 'loading...'}
+      <Global 
+      styles = {css`
+      *{
+        list-style: none;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Open Sans', sans-serif;
+      }
+      body  {
+        background: #f5f6fa;
+      }
+      grow: {
+        flexGrow: 1,
+      },
+      `}/> 
+      <Layout>
+        {data? <Home games={data.games}/> : 'loading...'}
+      </Layout>
     </div>
   );
 }
