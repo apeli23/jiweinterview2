@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
 import { FaShoppingCart, FaCloudDownloadAlt, FaRegCreditCard, FaChartLine,  FaSearch, FaRegBell} from 'react-icons/fa';
-// import { IoIosSettings   } from "@react-icons/all-files/fa/IoIosSettings  ";
+
 
 const Sidebar = styled.div`
-    background: rgb(5, 68, 104);
+    background: transparent;
     position: fixed;
     top: 0;
     left: 0;
-    width: 225px;
+    width: 200px;
     height: 100%;
     padding: 20px 0;
     transition: all 0.5s ease;
-`
-const Wrapper = styled.div`
 `
 const SidebarContent= styled.div`
     margin-bottom: 30px;
@@ -21,35 +19,37 @@ const SidebarContent= styled.div`
 `
 const Logo = styled.img`
     display: block;
-    width: 230px;
-    height: 100px;
+    width: 200px;
+    height: 90px;
     border-radius: 50%;
     margin: 5 auto; 
 `
 const SidebarItem = styled.h4`
-    color: #ffffff;
     margin: 5px  ;
     left:15px; 
     padding: 10px 10px 10px;
     &:hover {
         color: yellow;
         cursor:pointer;
-        background-color:black;
+        background-color:#152238;
+        border-radius: 1rem;
       }
 `
 const ProfileContent = styled.div`
       margin:60px
+      width:200x
+      align-items:center;
+     
 `
 const ProfileItem = styled.p`
-    color:white;
-    padding: 20px;
-    top: 60px;
+    color:#FFF;
     margin: 10px;
-    padding:0px;
+    padding: 10px 10px 10px;
     &:hover {
         color: yellow;
         cursor:pointer;
         background-color:black;
+        border-radius: 1rem;
       }
 `
 const Section = styled.div`
@@ -58,8 +58,8 @@ const Section = styled.div`
     transition: all 0.5s ease;
 `
 const Topbar = styled.div`
-    background: rgb(7, 105, 185);
-    height: 50px;
+    background: transparent;
+    height: 100px;
     display: flex;
     align-items: center;
     padding: 0 30px;
@@ -71,6 +71,7 @@ const SearchInput = styled.input`
     border-radius: 1rem;
     width: 200px;
     height: 40px;
+    border: 0px;
 `
 const TopbarContents = styled.div`
      align-items: right;
@@ -78,7 +79,7 @@ const TopbarContents = styled.div`
 `
 const Button = styled.button`
   padding: 10px;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 0.7rem;
   color: white;
   border:0px;
@@ -89,48 +90,12 @@ const Button = styled.button`
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-image: linear-gradient(to right top, #ed433f, #df3a37, #d2302f, #c42627, #b71b1f);
 }
-
 `
-// const Container = styled.div`
-//     padding-left: 0;
-//     padding-right: 0;
-//     background-color:white;
-//     margin-left:20%;
-//     border-radius: 1rem;
-//     width:80%;
-//     height:100%;
-// `
-// const ListWrapper = styled.ul`
-
-// `;
-
-// const UserSettings = styled.div`
-//     margin-top:60px;    
-// `;
-
-// const ListItem = styled.li`
-//     list-style-type: none;  
-//     cursor:pointer;
-//     padding: 20px;
-//     font-size: 10px;
-//     &:hover {
-//         color: yellow;
-//         background-color:black;
-//       }
-// `;
-// const ListContent = styled.div`
-    
-// `;
-// const SearchForm = styled.form`
-//     border: '1px solid #ffffff',
-//     backgroundColor: '#ffffff',
-//     borderRadius: 5,
-// `;
-    
+ 
+ 
 const Layout = ({children}) => {
     return(
         <>
-         <Wrapper>
             <Sidebar>
                 <SidebarContent>
                     <Logo src="https://jiwe.studio/content/images/2020/08/jiwe_logo.png"/>
@@ -164,7 +129,7 @@ const Layout = ({children}) => {
                     </TopbarContents>
                 </Topbar>
             </Section>
-         </Wrapper>
+        {children}
         </>
     )
 };

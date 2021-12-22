@@ -1,12 +1,24 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import './App.css';
 import {useEffect, useState} from 'react';
 import GamesList from './components/GamesList';
 import type {ResponseData} from './types';
 import { Global, css } from '@emotion/react';
 import Layout from './components/Layout';
-import Home from './components/Home';
-
+import styled from '@emotion/styled'; 
+ 
+const Menu =  styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: #fff;
+    margin-left: 200px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    border-radius: 1rem;
+`;
+const MenuItem =  styled.h3`
+    font-size: 15px;
+`;
 
 function App() {
   const[data, setData] = useState<ResponseData | undefined>(undefined);
@@ -92,17 +104,55 @@ function App() {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'PT Sans', sans-serif;
+        
       }
       body  {
-        background: #f5f6fa;
+        background: #42275a;
+        max-width:9000px
+
       }
       grow: {
         flexGrow: 1,
       },
+     
+      @media only screen and (min-width: 1200px) {
+        .content__blog__container {
+          width: 84%;
+        }
+      }
+      
+      @media only screen and (min-width: 1024px) {
+        .cards__items {
+          display: flex;
+        }
+      }
+      
+      @media only screen and (max-width: 1024px) {
+        .cards__item {
+          margin-bottom: 2rem;
+        }
+    }
       `}/> 
       <Layout>
-        {data? <Home games={data.games}/> : 'loading...'}
+        
+        {data? 
+        <>
+        <Menu>
+          <MenuItem>
+          <a  href="/">all games</a>
+          </MenuItem>
+          {data.games.map((game) => (
+            <a href={`/${game.genre}`}>
+              <MenuItem key={game.id}>
+                {game.genre}
+              </MenuItem>
+            </a>
+          ))}
+        </Menu>
+          <GamesList games={data.games}/>
+        </> 
+        :'loading...'}
       </Layout>
     </div>
   );
