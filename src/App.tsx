@@ -19,6 +19,18 @@ const Menu =  styled.div`
 const MenuItem =  styled.h3`
     font-size: 15px;
 `;
+const ListWrapper = styled.ul`
+padding: 2rem;
+background: #fff;
+margin-left: 200px;
+margin-right: 30px;
+margin-bottom: 40px;
+border-radius: 1rem;
+display:flex;
+flex-wrap: wrap;
+justify-content: space-between;
+min-width: 400px;
+`;
 
 function App() {
   const[data, setData] = useState<ResponseData | undefined>(undefined);
@@ -115,7 +127,33 @@ function App() {
       grow: {
         flexGrow: 1,
       },
-     
+      #id: {
+        
+      } 
+      #rightItems{
+        margin-left: 24px;
+      }
+      .item {
+        background-color: #21262b;
+        cursor: pointer;
+        padding: 24px;
+        margin-top: 24px;
+        display: flex;
+        /* grid-template-columns: 1fr 11fr; */
+        color: aliceblue;
+      }
+      .img {
+        border-radius: 100%;
+        -webkit-border-radius:100%;
+        -moz-border-radius:100%;
+        -ms-border-radius:100%;
+        -o-border-radius:100%;
+      }
+      
+      .imgContainer {
+        margin: auto;
+      }
+      
       @media only screen and (min-width: 1200px) {
         .content__blog__container {
           width: 84%;
@@ -144,13 +182,15 @@ function App() {
           </MenuItem>
           {data.games.map((game) => (
             <a href={`/${game.genre}`}>
-              <MenuItem key={game.id}>
-                {game.genre}
+              <MenuItem >
+                <p key={game.id}>{game.genre}</p>
               </MenuItem>
             </a>
           ))}
         </Menu>
+        <ListWrapper>
           <GamesList games={data.games}/>
+        </ListWrapper>
         </> 
         :'loading...'}
       </Layout>

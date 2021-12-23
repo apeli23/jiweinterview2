@@ -14,6 +14,10 @@ export type Game = {
     __typename: string;
 }
 
+export type GameCard = {
+    genre: string;   
+}
+
 export type Author = {
     avatar: string;
     bio: string;
