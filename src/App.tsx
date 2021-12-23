@@ -200,7 +200,9 @@ function App() {
           <MenuItem>
           <a  href="/">all games</a>
           </MenuItem>
-          <CategoryList categories={categories}/>
+          <MenuItem>
+            <CategoryList categories={categories}/>
+          </MenuItem>
         </Menu>
         <ListWrapper>
           <GamesList games={allgames.games}/>

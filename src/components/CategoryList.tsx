@@ -5,9 +5,8 @@ interface Props {
 }
 
 const CategoryList: React.FunctionComponent<Props> = ({categories}) => {
-    console.log("c_categories",categories)
     categories.map((category) => (
-        console.log("props",category)
+        console.log(category.tag.name)
     ))
     return(
         <>
