@@ -16,6 +16,8 @@ const Menu =  styled.div`
     margin-right: 30px;
     margin-bottom: 10px;
     border-radius: 1rem;
+    height:30px;
+    align-items: center;
 `;
 const MenuItem =  styled.h3`
     font-size: 15px;
@@ -193,17 +195,12 @@ function App() {
     }
       `}/> 
       <Layout>
-        
+        <Menu>
+          <p>All games</p>
+            <CategoryList categories={categories}/>
+        </Menu>
         {allgames? 
         <>
-        <Menu>
-          <MenuItem>
-          <a  href="/">all games</a>
-          </MenuItem>
-          <MenuItem>
-            <CategoryList categories={categories}/>
-          </MenuItem>
-        </Menu>
         <ListWrapper>
           <GamesList games={allgames.games}/>
         </ListWrapper>

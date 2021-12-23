@@ -39,8 +39,8 @@ const GamesList: React.FunctionComponent<Props> = ({games}) => {
         <>  
             {games.map((game) => (
                 <>
-                <ListItem >
-                    <ListContent  key={game.id}>
+                <ListItem key={game.id} >
+                    <ListContent>
                         <Image 
                             alt = {game.title}
                             src={game.game_posters[0]?.file.path ? (game.game_posters[0]?.file.path):(LOGO)}

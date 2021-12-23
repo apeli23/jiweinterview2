@@ -10,7 +10,11 @@ const CategoryList: React.FunctionComponent<Props> = ({categories}) => {
     ))
     return(
         <>
-        works
+            {
+                categories.map((category) => (
+                    <a>{category.tag.name}</a>
+                ))
+            } 
         </>
     )
 };
