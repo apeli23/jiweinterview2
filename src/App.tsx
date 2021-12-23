@@ -1,10 +1,11 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import {useEffect, useState} from 'react';
 import GamesList from './components/GamesList';
-import type {ResponseData} from './types';
+import type {ResponseData, Genres, Genre} from './types';
 import { Global, css } from '@emotion/react';
 import Layout from './components/Layout';
 import styled from '@emotion/styled'; 
+import CategoryList from './components/CategoryList';
  
 const Menu =  styled.div`
     display: flex;
@@ -33,7 +34,10 @@ min-width: 400px;
 `;
 
 function App() {
-  const[data, setData] = useState<ResponseData | undefined>(undefined);
+  const[allgames, setAllGames] = useState<ResponseData | undefined>(undefined);
+   
+  const[categories, setCategories] = useState<Genre[] | undefined>(undefined)
+ 
   const prefetchTodos = async () => {
     // The results of this query will be cached like a normal query
     
@@ -43,6 +47,7 @@ function App() {
         'content-type': 'application/json',
         'x-hasura-admin-secret': 'jiwe-interview',
       },
+
       //incase of new request check to see when last req was updated
       cache: new InMemoryCache(),
     });
@@ -97,15 +102,30 @@ function App() {
       }
       `,
     });
-    
      
-    setData(data)
+    setAllGames(data)
+
+    const res_genres = await client.query({
+
+      query: gql`
+      query MyQuery {
+        game_genres {
+          tag {
+            name
+          }
+        }
+      }      
+      `
+    })
+    
+    setCategories(res_genres.data.game_genres)
   }
-  // console.log('data :>> ', data);
- 
+  
   useEffect(() => {
     prefetchTodos()
+    
   },[])
+  // console.log("categories",categories)
   return (
     <div>
       <Global 
@@ -174,22 +194,16 @@ function App() {
       `}/> 
       <Layout>
         
-        {data? 
+        {allgames? 
         <>
         <Menu>
           <MenuItem>
           <a  href="/">all games</a>
           </MenuItem>
-          {data.games.map((game) => (
-            <a href={`/${game.genre}`}>
-              <MenuItem >
-                <p key={game.id}>{game.genre}</p>
-              </MenuItem>
-            </a>
-          ))}
+          <CategoryList categories={categories}/>
         </Menu>
         <ListWrapper>
-          <GamesList games={data.games}/>
+          <GamesList games={allgames.games}/>
         </ListWrapper>
         </> 
         :'loading...'}

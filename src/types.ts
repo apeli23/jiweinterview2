@@ -1,3 +1,5 @@
+import { ExitStatus } from "typescript"
+
 export type Game = {
     author: Author[];
     author_id: string;
@@ -15,7 +17,7 @@ export type Game = {
 }
 
 export type GameCard = {
-    genre: string;   
+    genre: string;
 }
 
 export type Author = {
@@ -50,4 +52,13 @@ export type ResponseData = {
     games: Game[];
     Date: string;
     ID: string;
+}
+export type Genre = {
+    tag: { __typename: string, name: string }
+    __typename: string;
+}
+
+export type Genres = {
+    data: Genre[];
+    
 }
