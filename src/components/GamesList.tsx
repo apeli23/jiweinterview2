@@ -39,7 +39,7 @@ const GamesList: React.FunctionComponent<Props> = ({games}) => {
         <>  
             {games.map((game) => (
                 <>
-                <ListItem key={game.id} >
+                <ListItem key={game.id}>
                     <ListContent>
                         <Image 
                             alt = {game.title}

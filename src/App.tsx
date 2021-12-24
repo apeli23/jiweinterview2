@@ -40,19 +40,18 @@ function App() {
    
   const[categories, setCategories] = useState<Genre[] | undefined>(undefined)
  
-  const prefetchTodos = async () => {
-    // The results of this query will be cached like a normal query
-    
-    const client = new ApolloClient({
-      uri: 'https://jiwe-demo.herokuapp.com/v1/graphql',
-      headers: {
-        'content-type': 'application/json',
-        'x-hasura-admin-secret': 'jiwe-interview',
-      },
+  const client = new ApolloClient({
+    uri: 'https://jiwe-demo.herokuapp.com/v1/graphql',
+    headers: {
+      'content-type': 'application/json',
+      'x-hasura-admin-secret': 'jiwe-interview',
+    },
 
-      //incase of new request check to see when last req was updated
-      cache: new InMemoryCache(),
-    });
+    //incase of new request check to see when last req was updated
+    cache: new InMemoryCache(),
+  });
+  const prefetchGames = async () => {
+    // The results of this query will be cached like a normal query
     const { data }  = await client.query({
       query: gql`
       query GetAllGames {
@@ -106,7 +105,10 @@ function App() {
     });
      
     setAllGames(data)
+    console.log('allgames', allgames)
 
+  }
+  const prefetchGenres = async()  => {
     const res_genres = await client.query({
 
       query: gql`
@@ -122,9 +124,9 @@ function App() {
     
     setCategories(res_genres.data.game_genres)
   }
-  
   useEffect(() => {
-    prefetchTodos()
+    prefetchGames()
+    prefetchGenres()
     
   },[])
   // console.log("categories",categories)
@@ -197,7 +199,7 @@ function App() {
       <Layout>
         <Menu>
           <p>All games</p>
-            <CategoryList categories={categories}/>
+          <CategoryList categories={categories} />
         </Menu>
         {allgames? 
         <>
