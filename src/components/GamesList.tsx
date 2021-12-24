@@ -6,7 +6,8 @@ const LOGO= 'https://images.unsplash.com/photo-1543404809-435007eabb9a?ixlib=rb-
  
 
 interface Props {
-    games: Game[];  
+    games: Game[]; 
+ 
 }
 
 const ListItem = styled.li`
@@ -32,12 +33,12 @@ const Image = styled.img`
 const GamesList: React.FunctionComponent<Props> = ({games}) => {
     
 
-    // console.log(games)
+    console.log(games)
 
      
     return(
         <>  
-            {games.map((game) => (
+            {games?.map((game) => (
                 <>
                 <ListItem key={game.id}>
                     <ListContent>
