@@ -1,14 +1,15 @@
+import Sidebar from '../components/sidebar/sidebar';
+import { Menu, MenuItem, Button } from '../tags/app';
+import type { Genre } from '../types';
+import { HomeContainer } from '../tags/home';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import type { ResponseData, Genres, Genre, QueryResponse } from './types';
-import { Global, css } from '@emotion/react';
-import Layout from './components/Layout';
-import CategoryList from './components/CategoryList';
-import GamesList from './components/games/GamesList';
-import { Menu, MenuItem, Button } from './tags/app';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './home/Home';
-import Topbar from './components/topbar/Topbar';
+import type { ResponseData, Genres, QueryResponse } from '../types';
+import GamesList from '../components/games/GamesList'
+
+interface Props {
+  genres: Genre[];
+}
 
 const client = new ApolloClient({
   uri: 'https://jiwe-demo.herokuapp.com/v1/graphql',
@@ -21,14 +22,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+const Home: React.FunctionComponent<Props> = ({ genres }) => {
   useEffect(() => {
-    prefetchGenres();
-    handleGenre('');
-    fetchGames1();
-  }, []);
-
-  const [genres, setGenres] = useState<Genre[] | undefined>(undefined);
+    handleGenre("")
+    fetchGames1()
+  }, [])
   const [games, setGames] = useState<ResponseData | undefined>(undefined);
 
   const fetchGames1 = async () => {
@@ -84,22 +82,6 @@ function App() {
       `,
     });
     setGames(data);
-  };
-
-  const prefetchGenres = async () => {
-    const res_genres = await client.query({
-      query: gql`
-        query MyQuery {
-          game_genres {
-            tag {
-              name
-            }
-          }
-        }
-      `,
-    });
-
-    setGenres(res_genres.data.game_genres);
   };
 
   const handleGenre = async (genre: string) => {
@@ -161,45 +143,24 @@ function App() {
     setGames(response);
   };
   return (
-    <Router>
-      <Global
-        styles={css`
-          * {
-            margin: 0;
-            background-color: #140f1d;
-          }
-          .link {
-            text-decoration: none;
-            color: inherit;
-          }
-          .sidebarIcon {
-            font-size: 16px;
-            margin-left: 10px;
-          }
-          .singlePostIcon:first-child {
-            color: teal;
-          }
-          .singlePostIcon:last-child {
-            color: tomato;
-          }
-          .singlePostDesc::first-letter {
-            margin-left: 20px;
-            font-size: 30px;
-            font-weight: 600;
-          }
-          .home {
-            display: flex;
-          }
-        `}
-      />
-      <Topbar />
-      <Switch>
-        <Route exact path="/">
-          <Home genres={genres} />
-        </Route>
-      </Switch>
-    </Router>
+    <HomeContainer>
+      <Sidebar />
+      <Menu>
+        <MenuItem>
+          {genres?.map((genre) => (
+            <Button
+              onClick={() => {
+                handleGenre(genre.tag.name);
+              }}
+            >
+              {genre.tag.name}
+            </Button>
+          ))}
+        </MenuItem>
+      </Menu>
+      {games ? <GamesList games={games.games} /> : 'loading...'}
+    </HomeContainer>
   );
-}
+};
 
-export default App;
+export default Home;

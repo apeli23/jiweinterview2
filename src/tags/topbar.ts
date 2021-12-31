@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Top = styled.div`
   width: 100%;
   height: 100px;
-  background-color: transparent;
+  background-color: #140f1d;
   position: sticky;
   top: 0;
   display: flex;

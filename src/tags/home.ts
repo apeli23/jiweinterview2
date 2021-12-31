@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
 
-export const Home =styled.div`
+export const HomeContainer =styled.div`
 display: flex;
 `;

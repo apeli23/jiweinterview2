@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const SidebarContainer = styled.div`
+  top:0;
   flex: 3;
   width:20%;
   height: 100%;
@@ -18,7 +19,7 @@ export const SidebarText = styled.p`
 export const SidebarList = styled.ul`
   list-style-type: none;
   margin-bottom: 30%;
-  margin-top: 15px;
+  margin-top: 0px;
   margin-right:0%;
   align-items:center;
   color:white;
