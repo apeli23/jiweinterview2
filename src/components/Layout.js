@@ -19,7 +19,7 @@ import {
   SearchInput,
   TopbarContents,
   Button,
-} from "../tags";
+} from "../tags/tags";
 
 const Layout = ({ children }) => {
   return (

@@ -6,7 +6,7 @@ import { Global, css } from '@emotion/react';
 import Layout from './components/Layout';
 import CategoryList from './components/CategoryList';
 import GamesList from './components/GamesList';
-import { Menu, MenuItem, Button, ListWrapper } from './tags'
+import { Menu, MenuItem, Button, ListWrapper } from './tags/tags'
 // import { fetchGames } from './queries';
 
 const client = new ApolloClient({

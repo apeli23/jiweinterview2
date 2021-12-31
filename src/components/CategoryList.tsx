@@ -1,7 +1,7 @@
 import type { Genre, QueryResponse, ResponseData, } from '../types';
 import { useState, useEffect } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { Button, ListWrapper, ListItem, ListContent, Menu, MenuItem, Image } from '../tags';
+import { Button, ListWrapper, ListItem, ListContent, Menu, MenuItem, Image } from '../tags/tags';
 // import GamesList from './GamesList'
 import fetch from '../App'
 // import { fetchGames } from '../queries';
