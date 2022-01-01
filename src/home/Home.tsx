@@ -1,10 +1,9 @@
-import Sidebar from '../components/sidebar/sidebar';
-import { Menu, MenuItem, Button } from '../tags/app';
+import { Menu, MenuItem, Button } from '../tags/home';
 import type { Genre } from '../types';
 import { HomeContainer } from '../tags/home';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import type { ResponseData, Genres, QueryResponse } from '../types';
+import type { ResponseData, QueryResponse } from '../types';
 import GamesList from '../components/games/GamesList'
 
 interface Props {
@@ -134,17 +133,16 @@ const Home: React.FunctionComponent<Props> = ({ genres }) => {
     let data1 = data.data as QueryResponse;
     let response: ResponseData = { games: [], id: '', __typename: '' };
 
-    data1.tags.map((tag) => {
-      tag.game_genres.map((game) => {
-        response.games.push(game.game);
-      });
-    });
+    data1.tags.map((tag) => (
+      tag.game_genres.map((game) => (
+        response.games.push(game.game)
+      ))
+    ));
 
     setGames(response);
   };
   return (
     <HomeContainer>
-      <Sidebar />
       <Menu>
         <MenuItem>
           {genres?.map((genre) => (
@@ -157,7 +155,7 @@ const Home: React.FunctionComponent<Props> = ({ genres }) => {
             </Button>
           ))}
         </MenuItem>
-      </Menu>
+      </Menu> 
       {games ? <GamesList games={games.games} /> : 'loading...'}
     </HomeContainer>
   );

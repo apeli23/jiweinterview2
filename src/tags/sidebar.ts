@@ -1,16 +1,15 @@
 import styled from '@emotion/styled';
 
 export const SidebarContainer = styled.div`
-  top:0;
   flex: 3;
-  width:20%;
+  width:25%;
   height: 100%;
   margin: 0px;
   padding-bottom: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-
+  
   `;
 
 export const SidebarText = styled.p`
@@ -20,7 +19,7 @@ export const SidebarList = styled.ul`
   list-style-type: none;
   margin-bottom: 30%;
   margin-top: 0px;
-  margin-right:0%;
+  margin-right:40%;
   align-items:center;
   color:white;
 `;

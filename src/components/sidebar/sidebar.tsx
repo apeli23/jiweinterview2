@@ -12,12 +12,12 @@ export default function Sidebar() {
       <SidebarList>
         <SidebarListItem>
           <SidebarText>
-            <SidebarIcon className="fas fa-shopping-cart" /> Store{' '}
+            <SidebarIcon className="fas fa-shopping-cart" /> Store
           </SidebarText>
         </SidebarListItem>
         <SidebarListItem>
           <SidebarText>
-            <SidebarIcon className="fas fa-cloud-download-alt" /> Downloads
+            <SidebarIcon className="fas fa-cloud-download-alt" />  Downloads
           </SidebarText>
         </SidebarListItem>
         <SidebarListItem>
