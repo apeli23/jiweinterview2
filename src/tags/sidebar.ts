@@ -27,7 +27,6 @@ export const SidebarListItem = styled.li`
   width: 100%;
   height: 40px;
   cursor: pointer;
-  background:black; 
   text-align: center;
   margin-top:20px;
   align-items: center;    

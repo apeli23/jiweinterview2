@@ -14,7 +14,7 @@ const client = new ApolloClient({
   uri: 'https://jiwe-demo.herokuapp.com/v1/graphql',
   headers: {
     'content-type': 'application/json',
-    'x-hasura-admin-secret': 'jiwe-interview',
+    'x-hasura-admin-secret': process.env.JIWE,
   },
 
   //incase of new request check to see when last req was updated
@@ -145,6 +145,7 @@ const Home: React.FunctionComponent<Props> = ({ genres }) => {
     <HomeContainer>
       <Menu>
         <MenuItem>
+          <Button onClick={fetchGames1}>All</Button>
           {genres?.map((genre) => (
             <Button
               onClick={() => {

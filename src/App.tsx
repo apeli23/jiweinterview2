@@ -12,7 +12,7 @@ const client = new ApolloClient({
   uri: 'https://jiwe-demo.herokuapp.com/v1/graphql',
   headers: {
     'content-type': 'application/json',
-    'x-hasura-admin-secret': 'jiwe-interview',
+    'x-hasura-admin-secret': process.env.JIWE,
   },
 
   //incase of new request check to see when last req was updated
@@ -48,7 +48,11 @@ function App() {
         styles={css`
           * {
             margin: 0;
+         
+          }
+          body {
             background-color: #140f1d;
+            font-family: "proxima-nova-soft", sans-serif;
           }
           .link {
             text-decoration: none;

@@ -1,7 +1,7 @@
 import { ExitStatus } from "typescript"
 
 export type Game = {
-    author: Author[];
+    author: Author;
     author_id: string;
     author_type: null
     created_at: string;
